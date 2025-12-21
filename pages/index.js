@@ -1,9 +1,9 @@
 import connectDB from "@/utils/connectDB";
 import Customer from "@/models/Customer";
+import HomePage from "@/components/template/HomePage";
 
 export default function Index({ customers }) {
-  console.log(customers);
-  return <h1>index page</h1>;
+  return <HomePage customers={customers} />;
 }
 
 export async function getServerSideProps() {
