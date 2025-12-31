@@ -6,6 +6,7 @@ function Layout({ children }) {
       <header className="header">
         <h2>Hamim CRM</h2>
         <Link href="/add-customer">Add Customer</Link>
+        <Link href="/signup">Signup</Link>
       </header>
       <div className="main">{children}</div>
       <footer className="footer">Next.js | CRM Project</footer>
