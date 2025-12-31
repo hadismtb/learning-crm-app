@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 function Signup() {
@@ -18,6 +18,16 @@ function Signup() {
       return router.push("/login");
     }
   };
+
+  useEffect(() => {
+    fetch("/api/user")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          window.location.href = "/";
+        }
+      });
+  }, []);
 
   return (
     <div style={{ color: "white" }}>
