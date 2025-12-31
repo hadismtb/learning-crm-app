@@ -1,10 +1,23 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signupHandler = async (event) => {};
+  const router = useRouter();
+
+  const signupHandler = async (event) => {
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    if (data.status === "success") {
+      return router.push("/login");
+    }
+  };
 
   return (
     <div style={{ color: "white" }}>
