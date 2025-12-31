@@ -1,8 +1,8 @@
 import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 import { sign } from "jsonwebtoken";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import { serialize } from "cookie";
+import { verifyPassword } from "@/utils/auth";
 
 async function handler(req, res) {
   if (req.method !== "POST") return;
@@ -17,8 +17,7 @@ async function handler(req, res) {
   }
 
   const { email, password } = req.body;
-  console.log(process.env.SECRET_KEY, process);
-  const secretKey = process.env.SECRET_KEY || "XYZ124";
+  const secretKey = process.env.SECRET_KEY;
   const expiration = 24 * 60 * 60;
 
   if (!email || !password) {
@@ -32,7 +31,7 @@ async function handler(req, res) {
       .json({ status: "failed", message: "User not found!" });
   }
 
-  const isValid = await isValid(password, user.password);
+  const isValid = await verifyPassword(password, user.password);
   if (!isValid) {
     return res.status(422).json({
       status: "failed",
