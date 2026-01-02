@@ -13,3 +13,5 @@ async function handler(req, res) {
     .setHeader("Set-Cookie", serialized)
     .json({ status: "success", message: "Logged out successfully" });
 }
+
+export default handler;
