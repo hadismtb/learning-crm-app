@@ -42,13 +42,19 @@ a {
   color: #57aac8;
 }
 
-.header a {
+.header a, .header button {
   border: 1px solid #8af1aa;
   background-color: #8af1aa;
   color: #262836;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;
+  height: 33px;
+  font-size: 15px;
+}
+
+.header button {
+  font-family: inherit;
 }
 
 .card {
